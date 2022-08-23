@@ -24,9 +24,7 @@ def index():
             shortened_url = Url(original_url=url, app_url=our_url)
             db.session.add(shortened_url)
             db.session.commit()
-            url_to_show_user = f'localhost:{port}/{our_url}'
-            print(url_to_show_user)
-            print('******',url)
+            url_to_show_user = f'http://localhost:{port}/{our_url}'
             return render_template("index.html", shorter=url_to_show_user)
     except:
         return "Ooooooops, there's been an error!!"
