@@ -30,8 +30,6 @@ def index():
             return render_template("index.html", shorter=url_to_show_user)
     except:
         return "Ooooooops, there's been an error!!"
-        # else:
-        #     return render_template("index.html")
    
 @main_routes.route("/<string:url>")
 def lookup(url):
