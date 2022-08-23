@@ -15,27 +15,28 @@ def index():
         url = request.form['url']  
         s=pyshorteners.Shortener()
         shorter=s.tinyurl.short(url)
-        # db.session.add()
-        shortened_url = Url(original_url=url, shortened_url=shorter)
+        our_url = shorter[20:]
+        shortened_url = Url(original_url=url, app_url=our_url)
         db.session.add(shortened_url)
         db.session.commit()
-        print('***********************')
-        urls = Url.query.all()
-     
-        return render_template("index.html", shorter=shorter)
+        url_to_show_user = f'localhost:3000/{our_url}'
+  
+        return render_template("index.html", shorter=url_to_show_user)
 
         # else:
         #     return render_template("index.html")
    
 @main_routes.route("/<string:url>")
 def lookup(url):
-    found_original_url = Url.query.filter_by(original_url=url).first()
-    found_shortened_url = Url.query.filter_by(shortened_url=url).first()
-    print('*******************', str(url))
-    print('###########', url)
+    get_url = Url.query.filter_by(app_url=url).first()
+    print(get_url.original_url)
+    return redirect(f'https://{get_url.original_url}')
+    # found_shortened_url = Url.query.filter_by(shortened_url=url).first()
+    # print('*******************', str(url))
+    # print('###########', url)
 
-    if found_original_url.original_url != None:
-        return redirect('https://'+found_original_url.original_url)
+    # if found_original_url.original_url != None:
+    #     return redirect('https://'+found_original_url.original_url)
     # if found_shortened_url.shortened_url != None:
     #     print("you are in the elif - line 39")
     #     return redirect(found_shortened_url.shortened_url)
