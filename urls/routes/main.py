@@ -2,8 +2,14 @@ from flask import Blueprint, request, render_template, redirect
 from ..database.db import db
 from ..models.url import Url
 import pyshorteners
+from os import environ
+from dotenv import load_dotenv
 
 main_routes = Blueprint("main", __name__)
+
+load_dotenv()
+
+port = environ.get('PORT')
 
 @main_routes.route("/", methods=["GET", "POST"])
 def index():
@@ -19,7 +25,7 @@ def index():
         shortened_url = Url(original_url=url, app_url=our_url)
         db.session.add(shortened_url)
         db.session.commit()
-        url_to_show_user = f'localhost:3000/{our_url}'
+        url_to_show_user = f'localhost:{port}/{our_url}'
   
         return render_template("index.html", shorter=url_to_show_user)
 
