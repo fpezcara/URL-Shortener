@@ -1,0 +1,9 @@
+{% extends 'default.html' %}
+{% block content %}
+{% if shorter != '' %}
+
+<span>Here's your shortened URL</span>
+<p>{{ shorter }}</p>
+
+{% endif %}
+{% endblock content %}
