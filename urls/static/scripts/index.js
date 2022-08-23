@@ -1,9 +1,13 @@
-document.querySelectorAll(".listing").forEach((e) => {
-  e.addEventListener("click", (e) => {
-    const contact = e.currentTarget.querySelector(".contact-details");
+// const submitButton = document.getElementById("submit");
 
-    const visibility = contact.style.visibility;
+// submitButton.addEventListener("click", (e) => {
+//   const shortenedUrl = document.getElementById("shorter-label");
+//   const sh = document.getElementById("shorter");
 
-    contact.style.visibility = visibility === "" ? "visible" : "";
-  });
-});
+//   e.preventDefault();
+//   console.log(shortenedUrl);
+//   console.log(submitButton);
+//   console.log(sh);
+//   // e.preventDefault();
+//   shortenedUrl.style.visibility = "visible";
+// });

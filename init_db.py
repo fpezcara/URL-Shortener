@@ -1,5 +1,4 @@
 from urls import db
-from urls.models.url import Url
 
 # Clear it all out
 

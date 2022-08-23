@@ -5,7 +5,6 @@ from flask_cors import CORS
 
 from .database.db import db
 from .routes.main import main_routes
-from .routes.auth import auth_routes
 
 # Load environment variables
 
@@ -13,8 +12,8 @@ load_dotenv()
 
 database_uri = environ.get('DATABASE_URL')
 
-# if 'postgres:' in database_uri:
-#     database_uri = database_uri.replace("postgres:", "postgresql:")
+if 'postgres:' in database_uri:
+    database_uri = database_uri.replace("postgres:", "postgresql:")
 
 
 # Set up the app
@@ -31,8 +30,6 @@ db.app = app
 db.init_app(app)
 
 app.register_blueprint(main_routes)
-app.register_blueprint(auth_routes, url_prefix='/auth')
-
 # Main
 
 if __name__ == "__main__":

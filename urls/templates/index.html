@@ -5,27 +5,19 @@
 {% block title %}Urls{% endblock %}
 {% block content %}
     <h1>URL Shortener</h1>
-    <em>Use this to shorten long urls</em>
+    <em>Use this app to shorten long urls</em>
     <hr />
-    <!-- <ul> -->
-        <!-- {% for url in urls %} -->
-            <!-- <li class="listing">
-                <h2>{{ url.title }}</h3>
-                <p>{{ url.body }}<em class="contact-details"> | {{ url.email }}</em></p>
-                
-            </li> -->
-        <!-- {% endfor %} -->
-    <!-- </ul> -->
     <hr />
+    <section id="form-container">
     <h2>Enter your url</h2>
-    <!-- <form method="POST"> -->
-    <span>Here's your shortened URL</span>
-    <p>{{ shorter }}</p>
+    <div id='shortened-url'>
+    <!-- <span id="shorter-label">Hola</span> -->
+     <span id="shorter"><a href="https://{{shorter}}">{{ shorter }}</a></span>
+    </div>
     <form method="POST">
-        <fieldset>
-            <label for="title-input">Url: </label>
             <input type="text" id="url" name="url" required placeholder="Enter the url to be shortened" />
-            <input type="submit" value="Enter">
-        </fieldset>
+            <input type="submit" value="Enter" id="submit">
+            
     </form>
+</section>
 {% endblock %}
