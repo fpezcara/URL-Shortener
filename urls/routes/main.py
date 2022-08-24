@@ -23,7 +23,7 @@ def index():
     except:
         return "Ooooooops, there's been an error!!"
    
-@main_routes.route("/<string:url>")
+@main_routes.route("/<string:url>", methods=['GET'])
 def lookup(url):
     try:    
         get_url = Url.query.filter_by(app_url=url).first()
