@@ -7,11 +7,11 @@ main_routes = Blueprint("main", __name__)
 
 @main_routes.route("/", methods=["GET", "POST"])
 def index():
-    try:   
-        if request.method == "GET": 
+    try:
+        if request.method == "GET":
             return render_template("index.html")
         else:
-            url = request.form['url']  
+            url = request.form['url']
             s=pyshorteners.Shortener()
             shorter=s.tinyurl.short(url)
             our_url = shorter[20:]
@@ -22,10 +22,10 @@ def index():
             return render_template("index.html", shorter=url_to_show_user)
     except:
         return "Ooooooops, there's been an error!!"
-   
-@main_routes.route("/<string:url>")
+
+@main_routes.route("/<string:url>", methods=["GET"])
 def lookup(url):
-    try:    
+    try:
         get_url = Url.query.filter_by(app_url=url).first()
         if not 'https://' in get_url.original_url:
             return redirect(f'https://{get_url.original_url}')
